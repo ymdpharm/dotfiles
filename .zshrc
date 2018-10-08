@@ -13,14 +13,14 @@ function chpwd() {
 }
 
 ### iTerm2 bg color theme
-### requires settings "default", "remote"
+### requires settings "Default", "remote"
 function my_ssh() {
  case $1 in 
   *@* ) echo -e "\033]1337;SetProfile=remote\a" ;;
-  * ) echo -e "\033]1337;SetProfile=default\a" ;;
+  * ) echo -e "\033]1337;SetProfile=Default\a" ;;
  esac
- trap "echo -e '\033]1337;SetProfile=default\a'" 1 2 3 15
- trap "echo -e '\033]1337;SetProfile=default\a'" EXIT
+ trap "echo -e '\033]1337;SetProfile=Default\a'" 1 2 3 15
+ trap "echo -e '\033]1337;SetProfile=Default\a'" EXIT
  ssh $@
 }
 alias ssh='my_ssh'
