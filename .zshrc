@@ -1,7 +1,7 @@
 ### command
 export HISTFILE=${HOME}/.zsh_history
-export HISTSIZE=1000
-export SAVEHIST=100000
+export HISTSIZE=10000
+export SAVEHIST=1000000
 function history-all { history -E 1 }
 setopt hist_ignore_dups
 setopt share_history
@@ -25,6 +25,7 @@ function my_ssh() {
 }
 alias ssh='my_ssh'
 
+
 ### plugin
 source ${HOME}/.zplug/init.zsh
 zplug 'zplug/zplug', hook-build:'zplug --self-manage'
@@ -44,3 +45,12 @@ fi
 
 zplug load
 
+### peco 
+function peco-history-selection() {
+    BUFFER=`history -n 1 | tail -r  | awk '!a[$0]++' | peco`
+    CURSOR=$#BUFFER
+    zle reset-prompt
+}
+
+zle -N peco-history-selection
+bindkey '^R' peco-history-selection
