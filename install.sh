@@ -1,11 +1,11 @@
 #!/bin/bash
 
 # setup zsh
-[ ! -e $(which zsh) ] && brew install zsh
-[ ! -d ${HOME}/.zplug ] && curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh| zsh
+which zsh || brew install zsh
+which zplug || curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh| zsh
 
 # install peco
-[ ! -e $(which peco)] && brew install peco
+which peco || brew install peco
 
 # deploy dotfiles
 DOTFILES_DIR=$(cd $(dirname $0) && pwd)
@@ -16,3 +16,4 @@ do
     [[ "$f" == ".DS_Store" ]] && continue
     ln -snfv $DOTFILES_DIR/$f ${HOME}/$f
 done
+
