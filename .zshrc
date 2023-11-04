@@ -12,22 +12,9 @@ function chpwd() {
  ls; echo -ne "\033]0;$(pwd | rev | awk -F \/ '{print "/"$1"/"$2}'| rev)\007"
 }
 
-### iTerm2 bg color theme
-### requires settings "Default", "remote"
-function my_ssh() {
- case $1 in 
-  *@* ) echo -e "\033]1337;SetProfile=remote\a" ;;
-  * ) echo -e "\033]1337;SetProfile=Default\a" ;;
- esac
- trap "echo -e '\033]1337;SetProfile=Default\a'" 1 2 3 15
- trap "echo -e '\033]1337;SetProfile=Default\a'" EXIT
- ssh $@
-}
-alias ssh='my_ssh'
-
-
 ### plugin
-source ${HOME}/.zplug/init.zsh
+export ZPLUG_HOME=/usr/local/opt/zplug
+source $ZPLUG_HOME/init.zsh
 zplug 'zplug/zplug', hook-build:'zplug --self-manage'
 zplug mafredri/zsh-async, from:github
 zplug sindresorhus/pure, use:pure.zsh, from:github

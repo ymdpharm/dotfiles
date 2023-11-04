@@ -3,5 +3,3 @@
 - move to Preferences > General
 - check "Load preferences .." and set URL to `~/dotfiles/iterm2`
 
-## installation
-`./install.sh`
