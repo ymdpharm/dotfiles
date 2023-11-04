@@ -7,11 +7,6 @@ setopt hist_ignore_dups
 setopt share_history
 autoload history-search-end
 
-### set current dir to tab name
-function chpwd() { 
- ls; echo -ne "\033]0;$(pwd | rev | awk -F \/ '{print "/"$1"/"$2}'| rev)\007"
-}
-
 ### plugin
 export ZPLUG_HOME=/usr/local/opt/zplug
 source $ZPLUG_HOME/init.zsh
